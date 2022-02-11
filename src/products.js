@@ -8,7 +8,7 @@ const products = [
     'brand': 'Apple',
     'category': 'Electronics',
     'price': 89.99,
-    'countInStock': 10,
+    'countInStock': 0,
     'rating': 4.5,
     'numReviews': 12,
   },
@@ -17,7 +17,7 @@ const products = [
     'name': 'TAPTES 2021 2022 Snow Chains for Tesla Model S 3 X Y (Set of 2)',
     'image': '/images/tire_chain.jpeg',
     'description':
-      'a must have Tesla accessory for your Tesla Model 3  Model Y Model S & Model X in Winter 2021.Superior traction,  excellent skid resistance, low-temperature resistance.',
+      'In stock, a must have Tesla accessory for your Tesla Model 3  Model Y Model S & Model X in Winter 2021. Superior traction,  excellent skid resistance, low-temperature resistance. \n Material and Function: Quenched alloy steel material, rubber, non-slip steel particles designed to reduce anti-skid chain wear, more abrasion resistance for long service life, stronger grip effect and increase the safety factor, throughout the design, more solid.Hollow drainage design. Application: snowfield, slope, mud, etc; Provides excellent traction and durability in snowy conditions, ice-breaking effect stronger. Package Included – Snow chains (6 pieces for two wheels), a pair of gloves，portable packing bag, a hook. TAPTES will not accept returns of Non-Quality Issues due to high shipping cost from Hong Kong to other countries.',
     'brand': 'Tesrab',
     'category': 'Electronics',
     'price': 199.99,
