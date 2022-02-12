@@ -16,7 +16,7 @@ function HomeScreen() {
     async function fetchProducts() {
       // use wait to return the promise
       // destructure into data
-      const {data} = await Axios.get('http://localhost:8000/api/products/');
+      const {data} = await Axios.get('/api/products/');
       setProducts(data);
     }
 

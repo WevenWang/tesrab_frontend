@@ -1,14 +1,32 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Button, Card, ListGroupItem } from 'react-bootstrap';
 import Rating from '../components/Rating';
-import products from '../products'
-;
+import products from '../products';
+import axios from 'axios';
 
 
 function ProductScreen() {
+
     const match = useParams();
-    const product = products.find((p) => p._id === match.id);
+    // initialize products array to empty state 
+    const [product, setProduct] = useState([]);
+
+    // useEffect gets triggered when a component loads
+    // or when a state attribute is changed
+    // useEffect needs to be triggered only when component first load
+    useEffect(() => {
+        // wrap wait inside an async function
+        async function fetchProduct() {
+        // use wait to return the promise
+        // destructure into data
+        const {data} = await axios.get(`/api/products/${match.id}`);
+        setProduct(data);
+        }
+
+        fetchProduct()
+        
+    }, [])
     return (
         <div>
             <Link to='/' className="btn btn-dark my-3">
