@@ -10,7 +10,10 @@ function Header() {
       <Navbar bg="dark" variant='dark' expand="lg" collapseOnSelect>
         <Container>
             <LinkContainer to='/'>
-                <Navbar.Brand>Tesrab</Navbar.Brand>
+                <Navbar.Brand>
+                    <img alt="" src="/images/tesrab_bunny_text.png" height="100"  className="align-top"/>
+                    
+                </Navbar.Brand>
             </LinkContainer>
             
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -22,7 +25,7 @@ function Header() {
                     
                     <Nav.Link href="#link">Link</Nav.Link>
                     <LinkContainer to='/cart'>
-                        <Nav.Link><i className="fas fa-shopping-cart"></i> Cart</Nav.Link>
+                        <Nav.Link ><i className="fas fa-shopping-cart"></i> Cart</Nav.Link>
                     </LinkContainer>
                     <LinkContainer to='/login'>
                         <Nav.Link><i className="fas fa-user"></i> Login</Nav.Link>
