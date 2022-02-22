@@ -1,18 +1,18 @@
 import React, { useEffect } from "react";
-import { Link, useParams, useLocation, useSearchParams } from 'react-router-dom'
+import { Link, useParams, useLocation, useSearchParams,useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, ListGroup, Image, Form, Button, Card, TabContent } from 'react-bootstrap'
 import Message from '../components/Message'
 import { addToCart, removeFromCart } from '../actions/cartAction'
-import { useHistory } from "react-router-dom";
 
 
-function CartScreen({history}) {
+function CartScreen() {
    
     const {id} = useParams()
     const productId = id
     const location = useLocation()
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const [searchParams,setSearchParams]=useSearchParams()
     const qty=searchParams.get('qty')
@@ -23,6 +23,11 @@ function CartScreen({history}) {
     const {cartItems} = cart
     // console.log("qty,id => ", qty, id)
     // console.log("cart Items: ", cartItems)
+
+    // make sure the user is logged in
+    const userLogin = useSelector(state => state.userLogin)
+    // destruct user login
+    const { userInfo } = userLogin
 
     useEffect(() => {
         if (productId) {
@@ -37,7 +42,12 @@ function CartScreen({history}) {
     }
 
     const checkoutHandler = () => {
-        history.push('/login?redirect=shipping')
+        if(!userInfo) {
+            navigate('/login')
+        } else {
+            navigate('/shipping')
+        }
+        
     }
     return (
         <Row>
