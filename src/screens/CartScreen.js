@@ -3,7 +3,7 @@ import { Link, useParams, useLocation, useSearchParams,useNavigate } from 'react
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, ListGroup, Image, Form, Button, Card, TabContent } from 'react-bootstrap'
 import Message from '../components/Message'
-import { addToCart, removeFromCart } from '../actions/cartAction'
+import { addToCart, removeFromCart } from '../actions/cartActions'
 
 
 function CartScreen() {
