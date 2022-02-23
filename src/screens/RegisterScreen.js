@@ -8,7 +8,7 @@ import FormContainer from '../components/FormContainer'
 import { register } from '../actions/userActions'
 import { Redirect } from 'react-router-dom'
 
-function RegisterScreen() {
+function RegisterScreen(){
   // set initial state
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -109,7 +109,7 @@ function RegisterScreen() {
 
                 <br></br>
                 <br></br>
-                <Button type='submit' variant='primary' className='btn w-100'>Register</Button>
+                <Button type='submit' variant='outline-dark' className='btn w-100'>Register</Button>
             </Form>
 
              <Row className='py-3'>
