@@ -6,11 +6,12 @@ import Message from '../components/Message'
 import CheckoutSteps from '../components/CheckoutSteps'
 import { useDispatch, useSelector } from 'react-redux'
 import { createOrder } from '../actions/orderActions'
+import { ORDER_CREATE_RESET } from '../constants/orderConstants'
 
 function PlaceOrderScreen() {
 
     const orderCreate = useSelector(state => state.orderCreate)
-    const {order, error, success} = orderCreate
+    
 
     const dispatch = useDispatch() 
 
@@ -26,13 +27,24 @@ function PlaceOrderScreen() {
 
     cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)).toFixed(2) 
 
+    
+    const {order, error, success} = orderCreate
+    // const [message, setMessage] = useState(error)
+    
+
+
     if(!cart.paymentMethod) {
         navigate('/payment')
     }
 
     useEffect(() => {
         if(success){
+            
             navigate(`/order/${order._id}`)
+            dispatch({
+                type: ORDER_CREATE_RESET
+            })
+
         }
     }, [navigate, success])
 

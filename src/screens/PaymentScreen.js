@@ -9,6 +9,8 @@ import CheckoutSteps from '../components/CheckoutSteps'
 function PaymentScreen() {
 
     const cart = useSelector(state => state.cart)
+    const orderCreate = useSelector(state => state.orderCreate)
+
     const { shippingAddress } = cart
 
     // dispatch the save shipping address action
@@ -24,6 +26,11 @@ function PaymentScreen() {
     const submitHandler = (e) => {
         e.preventDefault()
         dispatch(savePaymentMethod(paymentMethod))
+
+        // clear error message when loading placeorder
+        if(orderCreate.error !== '') {
+            orderCreate.error=''
+        }
         navigate('/placeorder')
 
 

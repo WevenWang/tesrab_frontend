@@ -65,7 +65,7 @@ function ProfileScreen() {
         if (password !== confirmPassword) {
             setMessage('Passwords do not match')
         } else {
-            // todo: needs to log user out after updating password
+            // TODO: needs to log user out after updating password
 
             dispatch(updateUserProfile({
                 'id': user._id,
