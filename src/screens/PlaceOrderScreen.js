@@ -182,7 +182,7 @@ function PlaceOrderScreen() {
                                     disabled={cart.cartItems === 0}
                                     onClick={placeOrder}
                                 >
-                                    Place Order
+                                    Continue
                                 </Button>
                             </ListGroup.Item>
                         </ListGroup>

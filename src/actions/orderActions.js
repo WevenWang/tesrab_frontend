@@ -5,6 +5,9 @@ import {
     ORDER_DETAILS_FAIL,
     ORDER_DETAILS_REQUEST,
     ORDER_DETAILS_SUCCESS,
+    ORDER_PAY_FAIL,
+    ORDER_PAY_REQUEST,
+    ORDER_PAY_SUCCESS,
  } from '../constants/orderConstants'
 
 import axios from 'axios'
@@ -105,6 +108,52 @@ export const getOrderDetails = (orderId) => async(dispatch, getState) => {
     } catch (error) {
          dispatch( {
             type: ORDER_DETAILS_FAIL,
+            payload: error.response && error.response.data.detail //detail is the custom error message
+            ? error.response.data.detail : error.message,
+
+        })
+    }
+}
+
+export const payOrder = (orderId, paymentResult) => async(dispatch, getState) => {
+    try {
+        dispatch(
+            {
+                type: ORDER_PAY_REQUEST
+            }
+        )
+
+        // get the logged in user
+        const { 
+            userLogin: { userInfo },
+            
+        } = getState()
+
+        // pass authorization token into header because getUserProfile needs isAuthenticated permission
+        const config = {
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        // data is the user token that get back from the post request
+        const { data } = await axios.put(
+            `/api/orders/${orderId}/pay/`,
+            paymentResult,
+            config
+            )
+
+        
+        dispatch({
+            type: ORDER_PAY_SUCCESS,
+            payload: data
+        })
+
+        
+
+    } catch (error) {
+         dispatch( {
+            type: ORDER_PAY_FAIL,
             payload: error.response && error.response.data.detail //detail is the custom error message
             ? error.response.data.detail : error.message,
 

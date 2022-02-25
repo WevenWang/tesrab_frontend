@@ -7,6 +7,7 @@ import Message from '../components/Message'
 import FormContainer from '../components/FormContainer'
 import { login } from '../actions/userActions'
 import { Redirect } from 'react-router-dom'
+import ProductScreen from './ProductScreen'
  
 function LoginScreen() {
     // set initial state
