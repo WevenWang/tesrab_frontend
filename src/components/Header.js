@@ -55,6 +55,28 @@ function Header() {
                             <Nav.Link><i className="fas fa-user"></i> Login</Nav.Link>
                         </LinkContainer>
                     )}
+
+                    {userInfo && userInfo.isAdmin && (
+                        <NavDropdown title='Admin' id='adminmenu'>
+                            <LinkContainer to='/admin/userlist'>
+                                <NavDropdown.Item>
+                                    Users
+                                </NavDropdown.Item>
+                            </LinkContainer>
+
+                            <LinkContainer to='/admin/productList'>
+                                <NavDropdown.Item>
+                                    Products
+                                </NavDropdown.Item>
+                            </LinkContainer>
+
+                            <LinkContainer to='/admin/orderList'>
+                                <NavDropdown.Item>
+                                    Orders
+                                </NavDropdown.Item>
+                            </LinkContainer>
+                        </NavDropdown>
+                    )}
                     
                     <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>

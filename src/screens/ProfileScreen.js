@@ -164,7 +164,7 @@ function ProfileScreen() {
                 ) : errorOrders ? (
                     <Message variant='danger'>{errorOrders}</Message>
                 ) : (
-                    <Table striped responsive className='table-sm'>
+                    <Table striped responsive hover bordered className='table-sm'>
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -172,7 +172,7 @@ function ProfileScreen() {
                                 <th>Total</th>
                                 <th>Paid</th>
                                 <th>Delivered</th>
-                                <th></th>
+                                
                             </tr>
                         </thead>
 
