@@ -54,7 +54,7 @@ function ProfileScreen() {
             navigate('/login')
         } else {
             // check if the user details have been loaded
-            if (!user || !user.name || success) {
+            if (!user || !user.name || success || userInfo._id !== user._id) {
                 dispatch({
                     type: USER_UPDATE_PROFILE_RESET
                 })

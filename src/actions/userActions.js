@@ -20,7 +20,10 @@ import {
     USER_LIST_RESET,
     USER_DELETE_REQUEST,
     USER_DELETE_SUCCESS,
-    USER_DELETE_FAIL
+    USER_DELETE_FAIL,
+    USER_UPDATE_REQUEST,
+    USER_UPDATE_SUCCESS,
+    USER_UPDATE_FAIL
 } from '../constants/userConstants'
 import axios from 'axios'
 import { ORDER_LIST_MY_RESET } from '../constants/orderConstants'
@@ -288,6 +291,54 @@ export const deleteUser = (userId) => async(dispatch, getState) => {
     } catch (error) {
          dispatch( {
             type: USER_DELETE_FAIL,
+            payload: error.response && error.response.data.detail //detail is the custom error message
+            ? error.response.data.detail : error.message,
+
+        })
+    }
+}
+
+export const updateUser = (user) => async(dispatch, getState) => {
+    try {
+        dispatch(
+            {
+                type: USER_UPDATE_REQUEST
+
+            }
+        )
+
+        // get the logged in user
+        const { 
+            userLogin: { userInfo },
+            
+        } = getState()
+
+        // pass authorization token into header because getUserProfile needs isAuthenticated permission
+        const config = {
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        // data is the user token that get back from the post request
+        const { data } = await axios.put(
+            `/api/users/update/${user._id}/`,
+            user,
+            config
+            )
+
+        dispatch({
+            type: USER_UPDATE_SUCCESS,
+        })
+
+        dispatch({
+            type: USER_DETAILS_SUCCESS,
+            payload: data
+        })
+
+    } catch (error) {
+         dispatch( {
+            type: USER_UPDATE_FAIL,
             payload: error.response && error.response.data.detail //detail is the custom error message
             ? error.response.data.detail : error.message,
 

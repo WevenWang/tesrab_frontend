@@ -6,6 +6,8 @@ import Loader from '../components/Loader'
 import Message from '../components/Message'
 import FormContainer from '../components/FormContainer'
 import { useParams } from 'react-router-dom'
+import { getUserDetails, updateUser } from '../actions/userActions'
+import { USER_UPDATE_RESET } from '../constants/userConstants'
 
 
 function UserEditScreen(){
@@ -28,9 +30,30 @@ function UserEditScreen(){
     // destruct user login
     const {error, loading, user} = userDetails
 
+    const userUpdate = useSelector(state => state.userUpdate)
+    // destruct user login
+    const {error: errorUpdate, loading: loadingUpdate, success: successUpdate } = userUpdate
+
     useEffect(() => {
+        if (successUpdate) {
+            dispatch({
+                type: USER_UPDATE_RESET,
+            })
+            navigate('/admin/userlist')
+        } else {
+            if(!user.name || user._id !== Number(userId)) {
+                dispatch(getUserDetails(userId))
+            } else {
+                setName(user.name)
+                setEmail(user.email)
+                setIsAdmin(user.isAdmin)
+
+            }
+            
+        }
+
         
-    }, [])
+    }, [dispatch, user._id, user.email, user.isAdmin, user.name, userId, navigate, successUpdate])
 
     const goBackHandler = () => {
         navigate('/admin/userlist')
@@ -39,6 +62,7 @@ function UserEditScreen(){
 
     const submitHandler = (e) => {
         e.preventDefault()
+        dispatch(updateUser({ _id: user._id, name, email, isAdmin}))
         
     }
 
@@ -50,6 +74,9 @@ function UserEditScreen(){
             </Button>
             <FormContainer>
                 <h1>Edit User</h1>
+                {loadingUpdate && <Loader />}
+                {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
+                
                 {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
                     <Form onSubmit={submitHandler}>
                     <Form.Group controlId='name'>
@@ -83,7 +110,7 @@ function UserEditScreen(){
                         <Form.Check
                             type='checkbox'
                             label='Check if this is an admin user: '
-                            check={isAdmin}
+                            checked={isAdmin}
                             onChange={(e) => setIsAdmin(e.target.checked)}
                         >
                         </Form.Check>
