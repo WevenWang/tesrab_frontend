@@ -20,6 +20,10 @@ import {
     PRODUCT_UPDATE_SUCCESS,
     PRODUCT_UPDATE_FAIL,
 
+    PRODUCT_CREATE_REVIEW_REQUEST,
+    PRODUCT_CREATE_REVIEW_SUCCESS,
+    PRODUCT_CREATE_REVIEW_FAIL,
+
 } from '../constants/productConstants'
 import axios from 'axios'
 
@@ -207,6 +211,52 @@ export const updateProduct = (product) => async(dispatch, getState) => {
     } catch (error) {
          dispatch( {
             type: PRODUCT_UPDATE_FAIL,
+            payload: error.response && error.response.data.detail //detail is the custom error message
+            ? error.response.data.detail : error.message,
+
+        })
+    }
+}
+
+
+export const createProductReview = (productId, review) => async(dispatch, getState) => {
+    try {
+        dispatch(
+            {
+                type:PRODUCT_CREATE_REVIEW_REQUEST
+            }
+        )
+
+        // get the logged in user
+        const { 
+            userLogin: { userInfo }, 
+        } = getState()
+
+        // pass authorization token into header because getUserProfile needs isAuthenticated permission
+        const config = {
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        // data is the user token that get back from the post request
+        const { data } = await axios.post(
+            `/api/products/${productId}/reviews/`,
+            review,
+            config
+        )
+
+        
+        dispatch({
+            type: PRODUCT_CREATE_REVIEW_SUCCESS,
+            payload: data,
+        })
+
+        
+
+    } catch (error) {
+         dispatch( {
+            type: PRODUCT_CREATE_REVIEW_FAIL,
             payload: error.response && error.response.data.detail //detail is the custom error message
             ? error.response.data.detail : error.message,
 

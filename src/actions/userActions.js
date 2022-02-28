@@ -27,6 +27,7 @@ import {
 } from '../constants/userConstants'
 import axios from 'axios'
 import { ORDER_LIST_MY_RESET } from '../constants/orderConstants'
+import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
 
 export const login = (email, password) => async(dispatch) => {
     try {
@@ -55,6 +56,8 @@ export const login = (email, password) => async(dispatch) => {
         // store user info in localstorage so that we know user is loggedin
         // next time we come back, we can access the data and login
         localStorage.setItem('userInfo', JSON.stringify(data))
+        dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
+        
     } catch (error) {
          dispatch( {
             type: USER_LOGIN_FAIL,
@@ -71,6 +74,7 @@ export const logout = (dispatch) => {
     dispatch({ type: USER_DETAILS_RESET})
     dispatch({ type: ORDER_LIST_MY_RESET})
     dispatch({ tyoe: USER_LIST_RESET})
+    dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
 }
 
 export const register = (name, email, password) => async(dispatch) => {
