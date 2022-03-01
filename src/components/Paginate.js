@@ -1,10 +1,9 @@
 import React from 'react'
 import { Pagination } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
-import { useLocation } from 'react-router-dom'
 
 function Paginate({ pages, page, keyword='', isAdmin=false }) {
-    console.log(keyword)
+
     if (keyword) {
         keyword = keyword.split('?keyword=')[1].split('&')[0]
     }

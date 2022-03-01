@@ -23,20 +23,21 @@ function SearchBox() {
     return (
         <Form onSubmit={submitHandler} className='d-flex'>
             <Form.Control
-                type='text'
+                type='search'
                 name='q'
                 onChange={ (e) => setKeyword(e.target.value)}
+                placeholder='search products'
                 className='mr-sm-2 ml-sm-5'
             >
 
             </Form.Control>
             
             <Button
-                type='search'
-                variant='outline-success'
+                type='submit'
+                variant='outline-light'
                 className='mr-3'
             >
-                Search Product
+                Search
             </Button>
         </Form>
     )

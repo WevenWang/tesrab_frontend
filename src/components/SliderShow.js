@@ -24,7 +24,7 @@ function SliderShow() {
         : (
             <Carousel 
                 pause='hover'
-                className='bg-dark'  
+                className='bg-black'  
             >
                 {products.map(product => (
                     <Carousel.Item key={product._id}>

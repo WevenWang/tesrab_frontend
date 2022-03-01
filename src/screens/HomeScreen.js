@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useSearchParams } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { listProducts } from '../actions/productActions'
@@ -13,7 +12,7 @@ import SliderShow from '../components/SliderShow'
 
 function HomeScreen() {
 
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   const location = useLocation()
 
@@ -24,8 +23,6 @@ function HomeScreen() {
 
   let keyword = location.search
   
-  console.log(keyword)
-
   // initialize products array to empty state 
   // const [products, setProducts] = useState([]);
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { Navbar, Nav, Container, Row, NavDropdown} from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap'
 import { logout } from '../actions/userActions'
 import SearchBox from './SearchBox';
@@ -18,11 +18,11 @@ function Header() {
     }
     return (
     <header>
-        <Navbar bg="dark" variant='dark' expand="lg" collapseOnSelect>
+        <Navbar bg="black" variant='dark' expand="lg" collapseOnSelect>
         <Container>
             <LinkContainer to='/'>
                 <Navbar.Brand>
-                    <img alt="" src="/images/tesrab_bunny_text.png" height="120"  className="align-middle"/>
+                    <img alt="Tesrab" src="/images/tesrab_bunny_text.png" height="120"  className="d-inline-block align-top"/>
                     
                 </Navbar.Brand>
             </LinkContainer>
@@ -38,7 +38,7 @@ function Header() {
                     </LinkContainer>
                     
                     <LinkContainer to='/cart'>
-                        <Nav.Link ><i className="fas fa-shopping-cart"></i> Cart</Nav.Link>
+                        <Nav.Link><i className="fas fa-shopping-cart"></i> Cart</Nav.Link>
                     </LinkContainer>
 
                     {userInfo ? (
@@ -49,13 +49,15 @@ function Header() {
                                 </NavDropdown.Item>
                             </LinkContainer>
 
+                            <NavDropdown.Divider />
+
                             <NavDropdown.Item onClick={logoutHandler}>
                                 Logout
                             </NavDropdown.Item>
                         </NavDropdown>
                     ) : (
                         <LinkContainer to='/login'>
-                            <Nav.Link><i className="fas fa-user"></i> Login</Nav.Link>
+                            <Nav.Link ><i className="fas fa-user"></i> Login</Nav.Link>
                         </LinkContainer>
                     )}
 
@@ -81,13 +83,13 @@ function Header() {
                         </NavDropdown>
                     )}
                     
-                    <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                    {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                    </NavDropdown>
+                    </NavDropdown> */}
                 </Nav>
             </Navbar.Collapse>
         </Container>

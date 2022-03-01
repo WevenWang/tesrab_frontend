@@ -71,7 +71,7 @@ function OrderScreen() {
             }
         }
         
-    }, [dispatch, order, orderId, successPay, successDeliver])
+    }, [dispatch, order, orderId, successPay, successDeliver, navigate, userInfo])
     
     // paymentResult is the response from paypal
     const successPaymentHandler = (paymentResult) => {
@@ -91,7 +91,7 @@ function OrderScreen() {
         <Message variant='danger'>{error}</Message>
     ) : (
         <div>
-            <h1 className='my-auto'>Submit your payment and you are good to go!</h1>
+            <h1 className='my-auto'>Payment</h1>
             
             
             <Row>

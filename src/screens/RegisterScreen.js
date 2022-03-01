@@ -6,7 +6,6 @@ import Loader from '../components/Loader'
 import Message from '../components/Message'
 import FormContainer from '../components/FormContainer'
 import { register } from '../actions/userActions'
-import { Redirect } from 'react-router-dom'
 
 function RegisterScreen(){
   // set initial state
@@ -20,7 +19,7 @@ function RegisterScreen(){
 
     const navigate = useNavigate()
 
-    const [searchParams]= useSearchParams()
+    const [searchParams] = useSearchParams()
     const redirect=searchParams.get('redirect') ? searchParams.get('redirect') : '/'
 
     const userRegister = useSelector(state => state.userRegister)

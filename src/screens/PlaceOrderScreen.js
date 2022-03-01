@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
-import FormContainer from '../components/FormContainer'
 import Message from '../components/Message'
 import CheckoutSteps from '../components/CheckoutSteps'
 import { useDispatch, useSelector } from 'react-redux'
@@ -46,7 +45,7 @@ function PlaceOrderScreen() {
             })
 
         }
-    }, [navigate, success])
+    }, [navigate, success, dispatch])
 
     const placeOrder = () => {
         dispatch(createOrder({
