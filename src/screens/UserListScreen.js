@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Button, Table } from 'react-bootstrap'
-import { dispatch, useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { deleteUser, listUsers } from '../actions/userActions'

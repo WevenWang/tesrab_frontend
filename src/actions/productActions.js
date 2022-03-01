@@ -23,6 +23,10 @@ import {
     PRODUCT_CREATE_REVIEW_REQUEST,
     PRODUCT_CREATE_REVIEW_SUCCESS,
     PRODUCT_CREATE_REVIEW_FAIL,
+    
+    PRODUCT_TOP_REQUEST,
+    PRODUCT_TOP_SUCCESS,
+    PRODUCT_TOP_FAIL,
 
 } from '../constants/productConstants'
 import axios from 'axios'
@@ -30,12 +34,12 @@ import axios from 'axios'
 // this function is in charge of making api calls to the backend
 // homescreen will trigger listProducts action
 // once we got the data, will then dispatch product reducer to update the states
-export const listProducts = () => async (dispatch) => {
+export const listProducts = (keyword = '') => async (dispatch) => {
     try {
         // dispatch first action, fire off first reducer
         dispatch({type: PRODUCT_LIST_REQUEST})
         // make api call, load data into payload and action type PRODUCT LIST SUCCESS
-        const { data } = await axios.get('/api/products/');
+        const { data } = await axios.get(`/api/products${keyword}`);
 
         dispatch({ 
             type: PRODUCT_LIST_SUCCESS,
@@ -45,6 +49,28 @@ export const listProducts = () => async (dispatch) => {
     } catch (error) {
         dispatch( {
             type: PRODUCT_LIST_FAIL,
+            payload: error.response && error.response.data.detail //detail is the custom error message
+            ? error.response.data.detail : error.message,
+
+        })
+    }
+}
+
+export const listTopProducts = () => async (dispatch) => {
+    try {
+        // dispatch first action, fire off first reducer
+        dispatch({type: PRODUCT_TOP_REQUEST})
+        // make api call, load data into payload and action type PRODUCT LIST SUCCESS
+        const { data } = await axios.get(`/api/products/top/`);
+
+        dispatch({ 
+            type: PRODUCT_TOP_SUCCESS,
+            payload: data
+         })
+
+    } catch (error) {
+        dispatch( {
+            type: PRODUCT_TOP_FAIL,
             payload: error.response && error.response.data.detail //detail is the custom error message
             ? error.response.data.detail : error.message,
 

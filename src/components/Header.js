@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Navbar, Nav, Container, Row, NavDropdown} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap'
 import { logout } from '../actions/userActions'
+import SearchBox from './SearchBox';
 
 
 function Header() {
@@ -21,19 +22,21 @@ function Header() {
         <Container>
             <LinkContainer to='/'>
                 <Navbar.Brand>
-                    <img alt="" src="/images/tesrab_bunny_text.png" height="100"  className="align-top"/>
+                    <img alt="" src="/images/tesrab_bunny_text.png" height="120"  className="align-middle"/>
                     
                 </Navbar.Brand>
             </LinkContainer>
             
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
+            <SearchBox />
+
             <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="mr-auto">
+                <Nav className="ms-auto">
                     <LinkContainer to='/'>
                         <Nav.Link>Home</Nav.Link>
                     </LinkContainer>
                     
-                    <Nav.Link href="#link">Link</Nav.Link>
                     <LinkContainer to='/cart'>
                         <Nav.Link ><i className="fas fa-shopping-cart"></i> Cart</Nav.Link>
                     </LinkContainer>

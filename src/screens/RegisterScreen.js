@@ -20,7 +20,7 @@ function RegisterScreen(){
 
     const navigate = useNavigate()
 
-    const [searchParams,setSearchParams]=useSearchParams()
+    const [searchParams]= useSearchParams()
     const redirect=searchParams.get('redirect') ? searchParams.get('redirect') : '/'
 
     const userRegister = useSelector(state => state.userRegister)
