@@ -22,7 +22,7 @@ function Header() {
         <Container>
             <LinkContainer to='/'>
                 <Navbar.Brand>
-                    <img alt="Tesrab" src="/images/tesrab_bunny_text.png" height="120"  className="d-inline-block align-top"/>
+                    <img alt="Tesrab" src="https://tesrab.s3.amazonaws.com/tesrab_bunny_text.png" height="120"  className="d-inline-block align-top"/>
                     
                 </Navbar.Brand>
             </LinkContainer>

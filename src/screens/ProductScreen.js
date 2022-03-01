@@ -39,13 +39,14 @@ function ProductScreen() {
     // or when a state attribute is changed
     // useEffect needs to be triggered only when component first load
     useEffect(() => {
-
+        
+        dispatch(listProductDetails(match.id))
         if( successProductReview || errorProductReview !== '') {
             setRating(0)
             setComment('')
             dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
         }
-        dispatch(listProductDetails(match.id))
+        
         // pass dispatch and match as parameters to useEffect function
     }, [dispatch, match, successProductReview])
 

@@ -79,7 +79,7 @@ function ProductListScreen() {
             {loadingCreate && <Loader />}
             {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
 
-            <h1>Users</h1>
+            
             {
                 loading ? ( <Loader /> ) : error ? (
                     <Message variant='danger'>{error}</Message>
